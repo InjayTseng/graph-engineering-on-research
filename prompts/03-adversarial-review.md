@@ -6,7 +6,7 @@ Diagram 3: flip the graph around — the input is not a question but the conclus
 
 Use for: a document that matters, that you revised many times yourself, that you believe is complete — a business plan, an architecture decision, an investment memo, a pricing evaluation. Field result: a plan hand-revised three times lost roughly one fifth of its conclusions in one overnight round, including its single biggest number (overstated ~5×).
 
-How to use: do the prep below, then dispatch the attacker instruction one copy per domain (parallel subagents if your harness supports them; otherwise one fresh conversation per attacker — attackers must not see each other, that is the core). Then run the integration rules yourself.
+How to use: do the prep below, then dispatch the attacker instruction one copy per domain (parallel subagents if your harness supports them; otherwise one fresh conversation per attacker — attackers must not see each other, that is the core). If you can pick models: attackers on strong reasoning models, ideally mixing model families — copies of one model share blind spots. Then run the integration rules yourself.
 
 ---
 

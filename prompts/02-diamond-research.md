@@ -6,7 +6,7 @@ Diagram 2: split into angles → parallel search → extract falsifiable claims 
 
 Use for: researching territory you don't know — a market, competitors, regulation, feasibility. Field baseline: one round takes roughly 15–30 searches; rejection rates of 16–40% are normal (higher in marketing-noise-heavy domains).
 
-How to use: copy the block below to the orchestrator (you, or your main agent). Harnesses that spawn subagents dispatch in parallel as written; in plain chat interfaces, open one fresh conversation per search agent and per verifier and carry the inputs/outputs yourself — isolation is the core of the method and cannot be skipped.
+How to use: copy the block below to the orchestrator (you, or your main agent). Harnesses that spawn subagents dispatch in parallel as written; in plain chat interfaces, open one fresh conversation per search agent and per verifier and carry the inputs/outputs yourself — isolation is the core of the method and cannot be skipped. If you can pick models per agent: cheap/fast for search agents, strong reasoning for verifiers (at least one from a different model family), your strongest model for the final synthesis.
 
 ---
 
