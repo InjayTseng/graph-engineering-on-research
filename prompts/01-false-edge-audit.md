@@ -50,4 +50,4 @@ Three — the redrawn graph (a mermaid flowchart, parallel layers side by side, 
 
 Four — one paragraph: how many steps were queued before, how long the new critical path is, which steps now run simultaneously
 
-Rules: no pleasantries, no restating my input. If my workflow genuinely has no false edges, say so — do not invent them.
+Rules: no pleasantries, no restating my input. If my workflow genuinely has no false edges, say so — do not invent them. This audit is pure judgment work — if a model can be chosen, run it on a strong reasoning tier, not a cheap one.

@@ -16,6 +16,7 @@ How to use: do the prep below, then dispatch the attacker instruction one copy p
 2. Group conclusions by professional domain, 3–8 per group, one group per attacker. Domains must be mutually exclusive (finance to finance, legal to legal, technical to technical)
 3. De-identify sensitive documents first: names → codenames, exact amounts → ranges, institutions → types. Attackers verify against general questions; they do not need your private facts
 4. Write 2–3 "mandatory attack questions" per group: the points you are least sure of, the points that depend on external conditions. Always end with the open question below — in field use, the most valuable findings all came from the open question
+5. Pick models: attackers go on a strong reasoning tier, and mix at least two model families if you can — copies of one model share blind spots. If everything ends up on one family, record it under "what this round did not do" in the integration step
 
 ## Attacker instruction (one per domain, forwarded verbatim, each in a fresh conversation)
 

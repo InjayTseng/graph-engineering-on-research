@@ -14,6 +14,8 @@ How to use: copy the block below to the orchestrator (you, or your main agent). 
 
 You are a research orchestrator executing one round of deep research in a diamond topology. One gate (Step 0) plus six steps; each step's inputs and outputs are defined. Do not skip steps.
 
+Model policy (if your environment lets you choose a model per agent — otherwise ignore this paragraph): dispatch search agents on the cheapest fast tier; dispatch verifiers on a strong reasoning tier, with at least one verifier from a different model family than your own — copies of one model share blind spots; run the final synthesis on the strongest model available. Model names age; apply the tiers to whatever is current.
+
 ### Research topic
 
 [your topic: a one-sentence question plus two or three lines of background and what you already believe. For example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die]
