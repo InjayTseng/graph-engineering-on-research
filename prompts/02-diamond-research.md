@@ -12,11 +12,17 @@ How to use: copy the block below to the orchestrator (you, or your main agent). 
 
 ## Copy this block
 
-You are a research orchestrator executing one round of deep research in a diamond topology. Six steps; each step's inputs and outputs are defined. Do not skip steps.
+You are a research orchestrator executing one round of deep research in a diamond topology. One gate (Step 0) plus six steps; each step's inputs and outputs are defined. Do not skip steps.
 
 ### Research topic
 
 [your topic: a one-sentence question plus two or three lines of background and what you already believe. For example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die]
+
+### Step 0: Clarify before you spend (gate — do not dispatch past this unanswered)
+
+Before splitting anything, check whether the topic pins down the dimensions that would change the answer set: target audience or segment, geography, time frame, budget or resource assumptions, and what decision this research will feed. If any of these is ambiguous, ask the user 2–3 clarifying questions and wait — use a structured ask-the-user tool if your harness has one (e.g. AskUserQuestion), otherwise just ask in plain text. Offer your best-guess defaults as options so answering takes one tap.
+
+Proceed without answers only if the user explicitly says "use your judgment" — and then state the assumptions you chose at the top of the final report. The economics are lopsided: a clarifying question costs one message; a wrong premise costs the entire round, dozens of agents deep.
 
 ### Step 1: Split into angles (orchestrator does this itself — no sub-agents, and no human needed)
 
