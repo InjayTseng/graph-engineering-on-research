@@ -1,54 +1,56 @@
-# 03 對抗覆核（Adversarial Review）
+# 03 Adversarial Review
 
-對應圖三：把圖反過來開——輸入不是問題，是你已經寫死的結論；中間節點的任務不是找，是殺。
+English ｜ [繁體中文](03-adversarial-review.zh-TW.md)
 
-適用：一份對你重要、你自己改過很多輪、自認相當完整的文件——商業計畫、架構決策、投資備忘、報價評估。實測：一份人工迭代三輪的規劃文件，八個攻擊者一晚推翻或修正約五分之一的結論。
+Diagram 3: flip the graph around — the input is not a question but the conclusions you have already frozen, and the middle nodes don't discover, they kill.
 
-用法：先做下面的「準備工作」，再把攻擊者指令逐份派發（能開 subagent 就平行開；一般聊天介面每個攻擊者開一個全新對話——攻擊者之間互相看不到，這是方法的核心）。最後你自己執行「整合規則」。
+Use for: a document that matters, that you revised many times yourself, that you believe is complete — a business plan, an architecture decision, an investment memo, a pricing evaluation. Field result: a plan hand-revised three times lost roughly one fifth of its conclusions in one overnight round, including its single biggest number (overstated ~5×).
+
+How to use: do the prep below, then dispatch the attacker instruction one copy per domain (parallel subagents if your harness supports them; otherwise one fresh conversation per attacker — attackers must not see each other, that is the core). Then run the integration rules yourself.
 
 ---
 
-## 準備工作（派發前，你來做）
+## Prep (before dispatching — you do this)
 
-1. 把文件的核心結論抽成清單，一條一行，每條是一個可以被推翻的斷言（「我們選方案 A 因為成本低 30%」而不是「關於方案選擇」）
-2. 按專業領域把結論分組，每組 3–8 條，一組給一個攻擊者。領域要互斥（財務歸財務、法律歸法律、技術歸技術）
-3. 機敏文件先去識別化：人名改代號、精確金額改區間、機構名改類型。攻擊者的查證用的是一般性問題，不需要你的隱私
-4. 每組寫 2–3 題「必答攻擊題」：你最沒把握的點、依賴外部條件的點。最後必加一題開放題（見下）——實測中最值錢的發現全部來自開放題
+1. Extract the document's core conclusions into a list, one per line. Each line is an assertion that can be overturned ("we chose option A because it costs 30% less"), not a topic ("regarding option selection")
+2. Group conclusions by professional domain, 3–8 per group, one group per attacker. Domains must be mutually exclusive (finance to finance, legal to legal, technical to technical)
+3. De-identify sensitive documents first: names → codenames, exact amounts → ranges, institutions → types. Attackers verify against general questions; they do not need your private facts
+4. Write 2–3 "mandatory attack questions" per group: the points you are least sure of, the points that depend on external conditions. Always end with the open question below — in field use, the most valuable findings all came from the open question
 
-## 攻擊者指令（每個領域一份，逐字轉發，各自全新對話）
+## Attacker instruction (one per domain, forwarded verbatim, each in a fresh conversation)
 
-> 你是【領域】的資深專家，被請來對一份已完成的規劃做對抗性覆核。你的任務不是複述常識，是找出我方結論錯在哪、太樂觀在哪。
+> You are a senior expert in [domain], hired to run an adversarial review of a finished plan. Your job is not to recite common knowledge — it is to find where our conclusions are wrong or too optimistic.
 >
-> 紀律：一手來源優先（法條、官方文件、原始數據），二手要標明。查證要查最新現況——規則會改版、判例會反轉。不確定就寫「無法查證」，絕對不要編造出處。
+> Discipline: primary sources first (statutes, official documents, raw data); label secondary sources. Verify against the current state of the world — rules get amended, precedents get reversed. Write "unverifiable" when unsure. Never fabricate a citation.
 >
-> 背景事實（去識別化）：
-> 【該領域需要的事實案例】
+> Background facts (de-identified):
+> [the facts this domain needs]
 >
-> 我方已寫死的結論，請逐條攻擊：
-> 【該組結論清單】
+> Our frozen conclusions — attack each one:
+> [the conclusion list for this group]
 >
-> 必答攻擊題：
-> 【2–3 題你最沒把握的點】
-> 最後一題：我方完全沒想到、但會實質改變結論的風險或機會是什麼？（假設這份規劃一年後失敗了，最可能的原因是什麼？）
+> Mandatory attack questions:
+> [your 2–3 weakest points]
+> Final question: what is the risk or opportunity we never thought of that would materially change these conclusions? (Assume this plan failed a year from now — what was the most likely cause?)
 >
-> 輸出格式：
-> 一、逐條 verdict：成立／部分成立／推翻／無法查證，各附理由、出處、信度（高／中／低）
-> 二、攻擊題答覆
-> 三、我方遺漏
-> 四、決定成敗的事實：要查什麼文件或問什麼人才能定案
-> 五、一手／二手來源分列
-> 密實，不要客套。
+> Output format:
+> One — per-conclusion verdict: HOLDS / PARTIALLY HOLDS / OVERTURNED / UNVERIFIABLE, each with reasoning, citations, and confidence (high / medium / low)
+> Two — answers to the attack questions
+> Three — what we missed
+> Four — the facts that decide the outcome: which document to pull or which person to ask to settle each open point
+> Five — primary and secondary sources, listed separately
+> Dense. No pleasantries.
 
-## 整合規則（收攏時，你自己做——這一層不能外包）
+## Integration rules (when collating — you do this yourself; this layer cannot be outsourced)
 
-1. 偽陽性過濾：攻擊者看不到全文，它的「我方遺漏」必然混入文件裡其實有的東西。逐條對照原文，分「真遺漏」與「它不知道」兩類，不可照抄
-2. 分歧仲裁:兩個攻擊者對同一問題結論相反時，判準是誰引了更具體的一手出處，並把裁定理由記下來。攻擊者互相獨立，分歧不會自己浮現，你必須主動比對重疊區
-3. 算術手工重算：帳面數字、兩側合計、門檻計算，自己算一遍。實測中最嚴重的錯（只算了一邊）是所有攻擊者和三輪人工迭代都沒抓到、最後靠一次手工重算抓到的
-4. 同輪互引不算獨立驗證:攻擊者 A 查到的新規則被攻擊者 B 引用仍是單源。單源的高影響主張列成清單，對外引用前逐條核對原文
-5. 誠實記錄這輪沒做的事:沒做第二輪交叉驗證、沒用不同模型家族當反證者（同一個模型多開幾份，該錯的地方會一起錯——1986 年 N-version programming 的老教訓）、沒做的加權情境。這是下一輪的起點
+1. False-positive filter: attackers can't see the whole document, so their "what we missed" lists will contain things the document already covers. Check each item against the original text and split into "truly missed" vs "the attacker couldn't know." Never copy the list wholesale
+2. Arbitrate disagreements: when two attackers reach opposite verdicts on the same point, the tiebreaker is who cites the more specific primary source — and write down your ruling. Attackers are independent; disagreements will not surface themselves. You must diff the overlap zones
+3. Recompute the arithmetic by hand: totals, both-sides sums, threshold math. In field use, the single worst error (a number computed on one side of a two-sided ledger) survived every attacker and three rounds of human revision — one manual recomputation caught it
+4. Same-round cross-citation is not independent verification: a new rule found by attacker A and cited by attacker B is still one source. List the single-source high-impact claims and check each against the original before citing externally
+5. Record honestly what this round did not do: no second-round cross-verification, no counter-examiner from a different model family (multiple copies of one model share blind spots — Knight & Leveson, 1986), no probability weighting of scenarios. That list is next round's starting point
 
-## 產出
+## Outputs
 
-1. 覆核報告：判定總表（哪條結論、什麼判定、影響多大）＋「已否決、不得引用」清單
-2. 決策依賴圖：閘門（哪些未知數卡住哪些決定）、時鐘（不可逆的期限）、無悔動作（不依賴任何未知數、現在就能做的事）、假性依賴（看起來要排隊、其實可以並行的事）
-3. 如果產出超過三四份互相引用的文件，加一頁三分鐘讀完的人類入口：現在怎樣、還等什麼決定、這週做什麼、想深讀開哪份
+1. Review report: a verdict table (which conclusion, what verdict, how big the impact) plus a "Rejected — do not cite" ledger
+2. Decision dependency graph: gates (which unknowns block which decisions), clocks (irreversible deadlines), no-regret moves (actions valid under every scenario, doable now), and false dependencies (things that look sequential but can run in parallel)
+3. If the output grows past three or four cross-referencing documents, add a three-minute human entry page: where things stand, what decisions are pending, what to do this week, which file to open for depth

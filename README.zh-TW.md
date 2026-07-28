@@ -1,0 +1,120 @@
+# Graph Engineering 範本集
+
+[English](README.md) ｜ 繁體中文
+
+可直接複製的 prompt 範本：把你的 AI agent 從排隊變成一張平行開火的圖——然後把圖反過來，攻擊自己的結論。
+
+三個範本，對應三張圖。每個檔案都是自包含的——整塊複製、貼給你的 agent、換掉佔位符就能跑。
+
+| 範本 | 做什麼 | 什麼時候用 |
+|---|---|---|
+| [01 假邊健檢](prompts/01-false-edge-audit.zh-TW.md) | 把你現有的工作流攤開，找出哪些「然後」是假的 | 你懷疑自己的 agent 在排沒必要的隊 |
+| [02 鑽石研究](prompts/02-diamond-research.zh-TW.md) | 拆角度 → 平行搜尋 → 對抗驗證 → 帶信度的報告 | 研究一個未知領域（市場、競品、法規） |
+| [03 對抗覆核](prompts/03-adversarial-review.zh-TW.md) | 把你已寫好的結論餵給互相隔離的攻擊者 | 一份重要文件，你自己改了很多輪、自認很完整 |
+
+## 三張圖
+
+### 圖一：排隊版（大部分人的現況）
+
+```mermaid
+graph TD
+    Q[研究問題] -->|5 個角度| A1[搜尋角度1]
+    A1 -. 然後？ .-> A2[搜尋角度2]
+    A2 -. 然後？ .-> A3[搜尋角度3]
+    A3 -->|全部主張| V[驗證]
+    V -->|存活主張| R[寫報告]
+
+    style A1 fill:#1e56c4,color:#fff
+    style A2 fill:#1e56c4,color:#fff
+    style A3 fill:#1e56c4,color:#fff
+    style V fill:#0c7a5e,color:#fff
+    linkStyle 1 stroke:#cc3a3a,stroke-width:2px
+    linkStyle 2 stroke:#cc3a3a,stroke-width:2px
+```
+
+紅色虛線是假邊（False edge）：下一步根本沒讀上一步的輸出，只因為打字順序而存在。判斷法只有一個——畫得出箭頭上流動的資料，才是真的邊；畫不出來，兩步就可以同時跑。
+
+### 圖二：鑽石拓撲（同一件事畫成圖）
+
+```mermaid
+graph TD
+    Q[範圍：把大問題拆給 agent 判斷] -->|角度1，各帶自己的 Context| A1[搜尋 agent]
+    Q -->|角度2| A2[搜尋 agent]
+    Q -->|角度3| A3[搜尋 agent]
+    Q -->|角度4| A4[搜尋 agent]
+    Q -->|角度5| A5[搜尋 agent]
+
+    A1 -->|來源＋可證偽主張| M[合併去重：一行程式，不派 agent]
+    A2 --> M
+    A3 --> M
+    A4 --> M
+    A5 --> M
+
+    M -->|Top 25 條，逐條| V[驗證者 × N，唯一任務：反駁]
+    V -->|存活 + 信度標註| S[Synthesize：寫報告]
+
+    style Q fill:#1e56c4,color:#fff
+    style A1 fill:#1e56c4,color:#fff
+    style A2 fill:#1e56c4,color:#fff
+    style A3 fill:#1e56c4,color:#fff
+    style A4 fill:#1e56c4,color:#fff
+    style A5 fill:#1e56c4,color:#fff
+    style V fill:#0c7a5e,color:#fff
+    style S fill:#1e56c4,color:#fff
+    style M fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+```
+
+搜尋節點之間沒有邊，所以同時跑。灰色是確定性程式不是 agent——合併去重是一行程式的事。綠色驗證層拿全新 context、唯一任務是反駁。
+
+### 圖三：反過來開（攻擊自己的結論）
+
+```mermaid
+graph TD
+    P[自認完整的規劃文件：已寫死的結論] -->|按領域拆＋去識別化| G1[攻擊者1：只看自己那份]
+    P -->|結論清單| G2[攻擊者2]
+    P -->|結論清單| G3[攻擊者3]
+    P -->|……共八個| G8[攻擊者8]
+
+    G1 -->|逐條 verdict＋開放題| J[主進程：仲裁分歧]
+    G2 --> J
+    G3 --> J
+    G8 --> J
+
+    J -->|被推翻或修正的結論| R[覆核報告＋決策依賴圖]
+
+    style P fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+    style G1 fill:#cc3a3a,color:#fff
+    style G2 fill:#cc3a3a,color:#fff
+    style G3 fill:#cc3a3a,color:#fff
+    style G8 fill:#cc3a3a,color:#fff
+    style J fill:#1e56c4,color:#fff
+    style R fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+```
+
+同一個骨架、方向相反：輸入不是問題是結論，中間節點的任務不是找是殺。實測：一份人工改過三輪的文件，一晚被推翻或修正約五分之一的結論。
+
+## 快速開始
+
+1. 挑一個範本，打開檔案，整塊複製「複製這段」以下的內容
+2. 換掉 `【】` 裡的佔位符（你的主題／你的工作流／你的結論清單）
+3. 貼給你的 agent
+
+**能開 subagent 的 harness**（Claude Code、有 Task/Agent 工具的環境）：照範本指示平行派發，效果最好。
+
+**一般聊天介面**（ChatGPT、Claude.ai、Gemini）：兩種降級法——(a) 每個角色開一個新對話，手動當調度者；(b) 同一對話依序模擬，但每換一個角色就明確宣告「忘掉上一位的輸出、只看你自己的材料」。隔離會打折，但方法仍然成立。
+
+## 三條誠實的警告
+
+- **Token 帳單是真的。** 鑽石研究一輪可能吃掉單次對話幾十倍的 token。搜尋和抓取節點用便宜模型，判斷力留給驗證和收攏
+- **同一個模型多開幾份，該錯的地方會一起錯**（Knight & Leveson 1986 對 N-version programming 的老教訓）。要拆模型層的盲點，用不同模型家族交錯當反證者
+- **圖買的是廣度，不是判斷力。** 連續兩輪零主張存活的問題，答案不在公開資料裡——再開一百個 agent 結果一樣，該去訪談了
+
+## 這套方法的血統
+
+每一招都比 LLM 老得多：隔離的懷疑者是 Delphi method（RAND，1950s）；指定攻擊是魔鬼代言人（Devil's Advocacy，1970s 管理決策學）；開放題是事前驗屍（Premortem，Gary Klein 2007）；否決帳本是競爭假設分析（ACH，CIA 情報分析）。方法是舊的，便宜是新的。
+
+完整故事與實測數據（313 個 agent、三輪研究、否決率 16–40%）見文章：〈別讓你的 Agent 排隊〉（連結見 repo 描述）。
+
+## License & Star
+
+MIT。拿去改、拿去用。如果這套範本幫你省了一輪重工，給顆 ⭐ 讓更多人看到。

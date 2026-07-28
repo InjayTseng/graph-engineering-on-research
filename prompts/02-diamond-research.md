@@ -1,56 +1,58 @@
-# 02 鑽石研究（Diamond Research）
+# 02 Diamond Research
 
-對應圖二：拆角度 → 平行搜尋 → 抽可證偽主張 → 確定性去重 → 對抗驗證 → 帶信度的報告。
+English ｜ [繁體中文](02-diamond-research.zh-TW.md)
 
-適用：研究一個你不熟的領域——市場、競品、法規、可行性。實測基準：一輪約 15–30 次搜尋，否決率常見 16–40%（行銷噪音重的領域偏高）。
+Diagram 2: split into angles → parallel search → extract falsifiable claims → deterministic dedupe → adversarial verification → a report with confidence labels.
 
-用法：複製下面整段給「調度者」（你自己或主 agent）。能開 subagent 的 harness 照字面平行派發；一般聊天介面把每個搜尋 agent 和每個驗證者各開一個新對話，你自己當調度者搬運輸入輸出——隔離是這套方法的核心，不能省。
+Use for: researching territory you don't know — a market, competitors, regulation, feasibility. Field baseline: one round takes roughly 15–30 searches; rejection rates of 16–40% are normal (higher in marketing-noise-heavy domains).
+
+How to use: copy the block below to the orchestrator (you, or your main agent). Harnesses that spawn subagents dispatch in parallel as written; in plain chat interfaces, open one fresh conversation per search agent and per verifier and carry the inputs/outputs yourself — isolation is the core of the method and cannot be skipped.
 
 ---
 
-## 複製這段
+## Copy this block
 
-你是研究調度者，用鑽石拓撲執行一輪深度研究。過程分六步，每步的輸入輸出都明確定義，不要跳步。
+You are a research orchestrator executing one round of deep research in a diamond topology. Six steps; each step's inputs and outputs are defined. Do not skip steps.
 
-### 研究主題
+### Research topic
 
-【你的主題：一句話問題＋兩三行背景與已知結論。例如：台灣中小企業導入 AI 客服的實際採購行為——誰付錢、付多少、卡在哪】
+[your topic: a one-sentence question plus two or three lines of background and what you already believe. For example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die]
 
-### 第一步：拆角度（你來做）
+### Step 1: Split into angles (you do this)
 
-把主題拆成 4–6 個互補且互斥的搜尋角度。好的拆法讓每個角度用不同類型的來源回答（官方數據／使用者聲音／供應商動態／失敗案例／價格資訊）。列出角度與每個角度的搜尋策略。
+Split the topic into 4–6 complementary, mutually exclusive search angles. A good split lets each angle be answered by a different type of source (official data / user voices / vendor moves / failure stories / pricing). List the angles and a search strategy for each.
 
-### 第二步：平行搜尋（每角度一個獨立 agent）
+### Step 2: Parallel search (one independent agent per angle)
 
-每個搜尋 agent 只拿到自己的角度，指令如下（逐字轉發）：
+Each search agent receives only its own angle. Forward this instruction verbatim:
 
-> 你負責搜尋研究一個角度：【該角度】。找 4–6 個來源，優先一手（官方文件、財報、當事人自述、原始數據），二手（媒體、部落格）要標明。從來源中抽出「可證偽的主張」——每條含：主張一句話、支撐原文引句、來源連結、重要性（高／中／低）。不確定的寫「無法查證」，絕對不要編造來源。輸出：主張清單，每條四欄。
+> You are researching one angle: [the angle]. Find 4–6 sources, primary first (official documents, filings, first-person accounts, raw data); label secondary sources (media, blogs) as secondary. Extract "falsifiable claims" from the sources — each claim has: the claim in one sentence, the supporting quote, the source link, and importance (high / medium / low). Write "unverifiable" when unsure. Never fabricate a source. Output: the claim list, four fields per claim.
 
-### 第三步：合併去重（確定性，不派 agent）
+### Step 3: Merge and dedupe (deterministic — no agent)
 
-收齊所有角度的主張後，用機械方法去重：主張正規化（去空白、統一數字格式）後比對，語義重複的合併並保留全部來源。這一步是水管工程，照規則做，不要重新判斷內容。
+Once all angles report back, dedupe mechanically: normalize the claims (strip whitespace, unify number formats), merge semantic duplicates, keep every source. This is plumbing. Follow the rule; do not re-judge content.
 
-### 第四步：對抗驗證（每條主張三個獨立驗證者）
+### Step 4: Adversarial verification (three independent verifiers per claim)
 
-取重要性「高」的主張（最多 25 條），每條派三個互相獨立的驗證者。驗證者只拿到主張本身，拿不到原始搜尋 agent 的推理。指令逐字轉發：
+Take the "high" importance claims (25 at most). Assign three mutually independent verifiers per claim. A verifier gets the claim only — not the original search agent's reasoning. Forward verbatim:
 
-> 你是懷疑者，唯一任務是推翻這條主張：【主張＋來源】。去找反面證據：更新的資料、原始出處的原文、獨立第二來源。分辨「廠商自報」與「獨立驗證」、「提案」與「已生效」、「傳聞」與「文件」。結論只能是：反駁成立（附證據）／無法反駁（附你查過什麼）。預設傾向反駁——你的價值在殺錯誤，不在附和。
+> You are a skeptic. Your only job is to refute this claim: [claim + source]. Hunt for counter-evidence: newer data, the original text of the primary source, an independent second source. Distinguish "vendor-reported" from "independently verified," "proposed" from "in force," "rumor" from "document." Your verdict is one of: REFUTED (with evidence) / COULD NOT REFUTE (with what you checked). Default toward refuting — your value is killing errors, not agreeing.
 
-判決規則：三票中兩票以上反駁 → 該主張死亡，進「已否決」帳本並記一句否決理由。
+Kill rule: two or more REFUTED out of three votes → the claim dies, goes into the rejection ledger with a one-line reason.
 
-### 第五步：停損檢查
+### Step 5: Stop-loss check
 
-若某個子題的主張全數陣亡，標記它。同一子題連續兩輪零主張存活 = 公開資料裡沒有這個答案，第三輪再開一百個 agent 結果也一樣——這個子題的下一步是訪談或一手資料採集，寫進報告的「未解問題」。
+If every claim under some sub-question died, flag it. The same sub-question with zero survivors for two consecutive rounds = the answer is not in public data. A third round with a hundred more agents will return the same nothing — that sub-question's next step is interviews or first-party data, and it goes in the report under "open questions."
 
-### 第六步：寫報告
+### Step 6: Write the report
 
-格式硬規則：
+Hard format rules:
 
-1. 執行摘要（五條以內）
-2. 分節發現：每條標註信度——「已驗證」（幾比幾票）／「未驗證」（僅單源）／「推論」（本報告的詮釋）。廠商自報與募資期數字至多標「中」
-3. 已否決、不得引用：列出被殺的主張與否決理由。這是下一輪的去重帳本，防謠言復活
-4. Coverage 說明：哪些子題零驗證覆蓋、哪些數字未經第二來源
-5. 未解問題：留給下一輪或留給訪談
-6. 來源清單：一手／二手分開列
+1. Executive summary (five lines max)
+2. Findings by section, every claim labeled: VERIFIED (vote count) / UNVERIFIED (single source) / INFERENCE (this report's interpretation). Vendor-reported and fundraising-era numbers cap at MEDIUM confidence
+3. Rejected — do not cite: the killed claims and why. This is next round's dedupe ledger; it keeps dead rumors dead
+4. Coverage notes: which sub-questions had zero verification coverage, which numbers rest on a single source
+5. Open questions: for the next round, or for interviews
+6. Sources: primary and secondary listed separately
 
-多輪使用：下一輪開跑前，把本輪的「已否決」與「未解問題」原文餵給新調度者——去重的對象是看過的一切，不是採納的部分。
+Multi-round use: before the next round starts, feed this round's "Rejected" and "Open questions" verbatim to the new orchestrator — you dedupe against everything you have seen, not just what you kept.

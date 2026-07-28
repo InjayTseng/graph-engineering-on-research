@@ -1,51 +1,53 @@
-# 01 假邊健檢（False-Edge Audit）
+# 01 False-Edge Audit
 
-對應圖一 → 圖二的轉換：把你現有的 agent 工作流攤開，找出哪些「然後」是假的，重畫成可以平行開火的圖。
+English ｜ [繁體中文](01-false-edge-audit.zh-TW.md)
 
-適用：任何你已經在跑的多步驟 agent 流程（研究、內容產線、代碼審查、資料處理）。單一對話就能跑，不需要 subagent。
+The Diagram 1 → Diagram 2 transformation: lay out the agent workflow you already run, find which "and then"s are fake, and redraw it as a graph that fires in parallel.
 
-用法：複製下面整段，把【你的工作流】換成你實際的步驟清單（照你現在的執行順序寫，一行一步，越具體越好）。
+Use for: any multi-step agent process you currently run in sequence (research, content pipelines, code review, data processing). Runs in a single conversation — no subagents needed.
+
+How to use: copy the whole block below and replace [your workflow] with your actual steps, one per line, in the order you currently execute them. The more specific, the better.
 
 ---
 
-## 複製這段
+## Copy this block
 
-你是工作流拓撲審計員。我會給你一份我目前依序執行的 agent 工作流，你的任務是找出假邊、重畫成圖。
+You are a workflow topology auditor. I will give you an agent workflow that I currently execute in sequence. Your job is to find the false edges and redraw it as a graph.
 
-### 定義
+### Definitions
 
-- 真邊：下一步真的讀取上一步的輸出。判準只有一個——說得出「箭頭上流動的變數是什麼」（一份清單、一批來源、一組結論）。說不出來就不是真邊
-- 假邊：兩步之間沒有資料流動，順序只因為書寫或習慣而存在。每一條假邊就是一段沒有理由的等待
-- 水管工程：合併、去重、過濾、格式轉換這類確定性工作。它們是一行程式的事，不需要 agent 判斷
+- Real edge: the next step actually reads the previous step's output. There is exactly one test — you can name the variable flowing along the arrow (a list, a batch of sources, a set of conclusions). If you can't name it, it isn't a real edge
+- False edge: no data flows between the two steps; the order exists only because of writing habit. Every false edge is a wait with no reason
+- Plumbing: merging, deduping, filtering, format conversion — deterministic work. These are one-liners of code and do not need an agent's judgment
 
-### 我的工作流
+### My workflow
 
-【你的工作流：一行一步，照目前的執行順序。例如：
-1. 搜尋主題 A 的資料
-2. 搜尋主題 B 的資料
-3. 整理兩批資料成清單
-4. 對清單做分析
-5. 寫成報告】
+[your workflow: one step per line, in current execution order. For example:
+1. Search for material on topic A
+2. Search for material on topic B
+3. Organize both batches into a list
+4. Analyze the list
+5. Write the report]
 
-### 你的任務
+### Your tasks
 
-1. 逐一檢查每對相鄰步驟，回答「箭頭上流動的變數是什麼」。答得出來標真邊，答不出來標假邊
-2. 找出所有水管工程步驟——它們應該從 agent 任務降級成一段程式或一個模板
-3. 重畫成圖：把互相沒有真邊的步驟放進同一個平行層
-4. 指出重畫後的關鍵路徑（最長的必經鏈）與預期節省（原本 N 步排隊 → 現在最長鏈幾步）
+1. Examine every adjacent pair of steps and answer: "what variable flows along this arrow?" If you can name it, mark the edge real; if not, mark it false
+2. Identify every plumbing step — these should be demoted from agent tasks to a snippet of code or a template
+3. Redraw the workflow as a graph: steps with no real edge between them go into the same parallel layer
+4. State the critical path of the redrawn graph (the longest chain that must run in order) and the expected saving (N steps in a line before → longest chain of M now)
 
-### 輸出格式
+### Output format
 
-一、逐邊判定表：
+One — edge-by-edge verdict table:
 
-| 邊 | 流動的變數 | 判定 |
+| Edge | Variable flowing | Verdict |
 |---|---|---|
-| 步驟1 → 步驟2 | （寫出變數，或寫「無」） | 真邊／假邊 |
+| step 1 → step 2 | (name it, or write "none") | real / false |
 
-二、水管工程清單：哪些步驟不需要 agent，各用一句話說明替代方案
+Two — plumbing list: which steps need no agent, one line each on the replacement
 
-三、重畫後的圖（mermaid flowchart，平行層並排，邊上標註流動的變數）
+Three — the redrawn graph (a mermaid flowchart, parallel layers side by side, edges labeled with the flowing variable)
 
-四、一段話總結：原流程幾步排隊、新圖關鍵路徑幾步、哪幾步可以同時跑
+Four — one paragraph: how many steps were queued before, how long the new critical path is, which steps now run simultaneously
 
-規則：不要客套，不要複述我的輸入。如果我的流程其實沒有假邊，直接說沒有，不要硬找。
+Rules: no pleasantries, no restating my input. If my workflow genuinely has no false edges, say so — do not invent them.

@@ -1,28 +1,28 @@
 # Graph Engineering Sample Prompts
 
-Copy-paste prompts to turn your AI agents from a waiting line into a parallel graph — and then turn the graph around to attack your own conclusions.
+English ｜ [繁體中文](README.zh-TW.md)
 
-**English speakers:** the prompts are in Traditional Chinese, but the structure (role → facts → tasks → output format) is language-independent. Machine-translate them and they still work. PRs for English versions welcome.
+Copy-paste prompts that turn your AI agents from a waiting line into a graph that fires in parallel — then flip the graph around and attack your own conclusions.
 
-三個範本，對應三張圖。每個檔案都是自包含的——整塊複製、貼給你的 agent、換掉佔位符就能跑。
+Three templates, three diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
 
-| 範本 | 做什麼 | 什麼時候用 |
+| Template | What it does | When to use it |
 |---|---|---|
-| [01 假邊健檢](prompts/01-false-edge-audit.md) | 把你現有的工作流攤開，找出哪些「然後」是假的 | 你懷疑自己的 agent 在排沒必要的隊 |
-| [02 鑽石研究](prompts/02-diamond-research.md) | 拆角度 → 平行搜尋 → 對抗驗證 → 帶信度的報告 | 研究一個未知領域（市場、競品、法規） |
-| [03 對抗覆核](prompts/03-adversarial-review.md) | 把你已寫好的結論餵給互相隔離的攻擊者 | 一份重要文件，你自己改了很多輪、自認很完整 |
+| [01 False-Edge Audit](prompts/01-false-edge-audit.md) | Lays out your existing workflow and finds which "and then"s are fake | You suspect your agents are waiting in a line they don't need |
+| [02 Diamond Research](prompts/02-diamond-research.md) | Split into angles → parallel search → adversarial verification → report with confidence labels | Researching an unknown territory (market, competitors, regulation) |
+| [03 Adversarial Review](prompts/03-adversarial-review.md) | Feeds your finished conclusions to isolated attackers | A document that matters, that you've revised many times, that you believe is complete |
 
-## 三張圖
+## The three diagrams
 
-### 圖一：排隊版（大部分人的現況）
+### Diagram 1: The waiting line (where most people are)
 
 ```mermaid
 graph TD
-    Q[研究問題] -->|5 個角度| A1[搜尋角度1]
-    A1 -. 然後？ .-> A2[搜尋角度2]
-    A2 -. 然後？ .-> A3[搜尋角度3]
-    A3 -->|全部主張| V[驗證]
-    V -->|存活主張| R[寫報告]
+    Q[Research question] -->|5 angles| A1[Search angle 1]
+    A1 -. and then? .-> A2[Search angle 2]
+    A2 -. and then? .-> A3[Search angle 3]
+    A3 -->|all claims| V[Verify]
+    V -->|surviving claims| R[Write report]
 
     style A1 fill:#1e56c4,color:#fff
     style A2 fill:#1e56c4,color:#fff
@@ -32,26 +32,26 @@ graph TD
     linkStyle 2 stroke:#cc3a3a,stroke-width:2px
 ```
 
-紅色虛線是假邊（False edge）：下一步根本沒讀上一步的輸出，只因為打字順序而存在。判斷法只有一個——畫得出箭頭上流動的資料，才是真的邊；畫不出來，兩步就可以同時跑。
+The red dashed lines are false edges: the next step never reads the previous step's output — the order exists only because that's how you typed it. The only test that matters: if you can name the variable flowing along the arrow, the edge is real. If you can't, the two steps are independent and can run at the same time.
 
-### 圖二：鑽石拓撲（同一件事畫成圖）
+### Diagram 2: The diamond (the same work, drawn as a graph)
 
 ```mermaid
 graph TD
-    Q[範圍：把大問題拆給 agent 判斷] -->|角度1，各帶自己的 Context| A1[搜尋 agent]
-    Q -->|角度2| A2[搜尋 agent]
-    Q -->|角度3| A3[搜尋 agent]
-    Q -->|角度4| A4[搜尋 agent]
-    Q -->|角度5| A5[搜尋 agent]
+    Q[Scope: split the problem] -->|angle 1, each with its own context| A1[Search agent]
+    Q -->|angle 2| A2[Search agent]
+    Q -->|angle 3| A3[Search agent]
+    Q -->|angle 4| A4[Search agent]
+    Q -->|angle 5| A5[Search agent]
 
-    A1 -->|來源＋可證偽主張| M[合併去重：一行程式，不派 agent]
+    A1 -->|sources + falsifiable claims| M[Merge & dedupe: one line of code, no agent]
     A2 --> M
     A3 --> M
     A4 --> M
     A5 --> M
 
-    M -->|Top 25 條，逐條| V[驗證者 × N，唯一任務：反駁]
-    V -->|存活 + 信度標註| S[Synthesize：寫報告]
+    M -->|top 25 claims, one by one| V[Verifiers × N — their only job: refute]
+    V -->|survivors + confidence labels| S[Synthesize: write the report]
 
     style Q fill:#1e56c4,color:#fff
     style A1 fill:#1e56c4,color:#fff
@@ -64,23 +64,23 @@ graph TD
     style M fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
 ```
 
-搜尋節點之間沒有邊，所以同時跑。灰色是確定性程式不是 agent——合併去重是一行程式的事。綠色驗證層拿全新 context、唯一任務是反駁。
+No edges between the search nodes, so they run simultaneously. The gray node is deterministic code, not an agent — merging and deduping is a one-liner. The green verification layer gets fresh context and has exactly one job: refute.
 
-### 圖三：反過來開（攻擊自己的結論）
+### Diagram 3: Flip it around (attack your own conclusions)
 
 ```mermaid
 graph TD
-    P[自認完整的規劃文件：已寫死的結論] -->|按領域拆＋去識別化| G1[攻擊者1：只看自己那份]
-    P -->|結論清單| G2[攻擊者2]
-    P -->|結論清單| G3[攻擊者3]
-    P -->|……共八個| G8[攻擊者8]
+    P[A plan you believe is complete: frozen conclusions] -->|split by domain + de-identify| G1[Attacker 1: sees only its slice]
+    P -->|conclusion list| G2[Attacker 2]
+    P -->|conclusion list| G3[Attacker 3]
+    P -->|...eight in total| G8[Attacker 8]
 
-    G1 -->|逐條 verdict＋開放題| J[主進程：仲裁分歧]
+    G1 -->|per-item verdicts + open questions| J[Main loop: arbitrate disagreements]
     G2 --> J
     G3 --> J
     G8 --> J
 
-    J -->|被推翻或修正的結論| R[覆核報告＋決策依賴圖]
+    J -->|conclusions overturned or revised| R[Review report + decision graph]
 
     style P fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
     style G1 fill:#cc3a3a,color:#fff
@@ -91,30 +91,30 @@ graph TD
     style R fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
 ```
 
-同一個骨架、方向相反：輸入不是問題是結論，中間節點的任務不是找是殺。實測：一份人工改過三輪的文件，一晚被推翻或修正約五分之一的結論。
+Same skeleton, opposite direction: the input is not a question but your conclusions, and the middle nodes don't discover — they kill. Field result: a plan hand-revised three times lost roughly one fifth of its conclusions in a single overnight round.
 
-## 快速開始
+## Quick start
 
-1. 挑一個範本，打開檔案，整塊複製「複製這段」以下的內容
-2. 換掉 `【】` 裡的佔位符（你的主題／你的工作流／你的結論清單）
-3. 貼給你的 agent
+1. Pick a template, open the file, copy everything below the "Copy this block" line
+2. Replace the `[...]` placeholders (your topic / your workflow / your conclusion list)
+3. Paste it to your agent
 
-**能開 subagent 的 harness**（Claude Code、有 Task/Agent 工具的環境）：照範本指示平行派發，效果最好。
+**Harnesses that can spawn subagents** (Claude Code and similar): dispatch in parallel exactly as written — this is where the method shines.
 
-**一般聊天介面**（ChatGPT、Claude.ai、Gemini）：兩種降級法——(a) 每個角色開一個新對話，手動當調度者；(b) 同一對話依序模擬，但每換一個角色就明確宣告「忘掉上一位的輸出、只看你自己的材料」。隔離會打折，但方法仍然成立。
+**Plain chat interfaces** (ChatGPT, Claude.ai, Gemini): two fallbacks — (a) open a fresh conversation per role and play the orchestrator yourself, or (b) simulate roles sequentially in one conversation, declaring at each switch "forget the previous role's output; use only your own materials." Isolation degrades, but the method still holds.
 
-## 三條誠實的警告
+## Three honest warnings
 
-- **Token 帳單是真的。** 鑽石研究一輪可能吃掉單次對話幾十倍的 token。搜尋和抓取節點用便宜模型，判斷力留給驗證和收攏
-- **同一個模型多開幾份，該錯的地方會一起錯**（Knight & Leveson 1986 對 N-version programming 的老教訓）。要拆模型層的盲點，用不同模型家族交錯當反證者
-- **圖買的是廣度，不是判斷力。** 連續兩輪零主張存活的問題，答案不在公開資料裡——再開一百個 agent 結果一樣，該去訪談了
+- **The token bill is real.** One diamond round can cost tens of single-conversation budgets. Run search and fetch nodes on cheap models; save the judgment for verification and synthesis
+- **Multiple copies of the same model share the same blind spots** (Knight & Leveson, 1986, on N-version programming). To break model-level blindness, use a different model family as the counter-examiner
+- **The graph buys breadth, not judgment.** A question with zero surviving claims after two rounds has no answer in public data — a hundred more agents won't change that. Go talk to people
 
-## 這套方法的血統
+## This method is older than LLMs
 
-每一招都比 LLM 老得多：隔離的懷疑者是 Delphi method（RAND，1950s）；指定攻擊是魔鬼代言人（Devil's Advocacy，1970s 管理決策學）；開放題是事前驗屍（Premortem，Gary Klein 2007）；否決帳本是競爭假設分析（ACH，CIA 情報分析）。方法是舊的，便宜是新的。
+Every trick here has a name, and every name predates LLMs by decades: isolated skeptics is the Delphi method (RAND, 1950s); designated attack is Devil's Advocacy (management science, 1970s); the open question is the Premortem (Gary Klein, HBR 2007); the rejection ledger is Analysis of Competing Hypotheses (Heuer, CIA). The method is old. What's new is the price: convening eight experts who never meet went from weeks to an hour.
 
-完整故事與實測數據（313 個 agent、三輪研究、否決率 16–40%）見文章：〈別讓你的 Agent 排隊〉（連結見 repo 描述）。
+The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article (Traditional Chinese, link in the repo description).
 
 ## License & Star
 
-MIT。拿去改、拿去用。如果這套範本幫你省了一輪重工，給顆 ⭐ 讓更多人看到。
+MIT. Take it, change it, use it. If these templates saved you a round of rework, a ⭐ helps others find them.
