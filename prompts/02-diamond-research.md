@@ -18,9 +18,9 @@ You are a research orchestrator executing one round of deep research in a diamon
 
 [your topic: a one-sentence question plus two or three lines of background and what you already believe. For example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die]
 
-### Step 1: Split into angles (you do this)
+### Step 1: Split into angles (orchestrator does this itself — no sub-agents, and no human needed)
 
-Split the topic into 4–6 complementary, mutually exclusive search angles. A good split lets each angle be answered by a different type of source (official data / user voices / vendor moves / failure stories / pricing). List the angles and a search strategy for each.
+Split the topic into 4–6 complementary, mutually exclusive search angles. A good split lets each angle be answered by a different type of source (official data / user voices / vendor moves / failure stories / pricing). List the angles and a search strategy for each. If a human is in the loop, show the split before dispatching — a bad split wastes the entire round; ten seconds of veto is the cheapest quality gate in the whole graph. If no human responds, proceed.
 
 ### Step 2: Parallel search (one independent agent per angle)
 
