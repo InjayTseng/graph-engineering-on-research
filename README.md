@@ -4,10 +4,11 @@ English ｜ [繁體中文](README.zh-TW.md)
 
 Copy-paste prompts that turn your AI agents from a waiting line into a graph that fires in parallel — then flip the graph around and attack your own conclusions.
 
-Five templates, four diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
+Five templates plus a five-minute demo, four diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
 
 | Template | What it does | When to use it |
 |---|---|---|
+| [00 Your First Graph](prompts/00-first-graph.md) | One claim you believe, three isolated skeptics, one vote — the diamond's kill layer alone | Feeling the method in five minutes, before learning it |
 | [01 False-Edge Audit](prompts/01-false-edge-audit.md) | Lays out your existing workflow and finds which "and then"s are fake | You suspect your agents are waiting in a line they don't need |
 | [02 Diamond Research](prompts/02-diamond-research.md) | Split into angles → parallel search → adversarial verification → report with confidence labels | Researching an unknown territory (market, competitors, regulation) |
 | [03 Adversarial Review](prompts/03-adversarial-review.md) | Feeds your finished conclusions to isolated attackers | A document that matters, that you've revised many times, that you believe is complete |
@@ -129,6 +130,7 @@ Same diamond skeleton, but the middle layer outputs judgment, not facts — and 
 
 Route by what you're holding, not what you want — the shape of your input picks the template deterministically:
 
+- Nothing yet — you just want to feel it, in five minutes → [00 Your First Graph](prompts/00-first-graph.md)
 - A fuzzy problem, nothing dispatched yet → [05 Issue Tree](prompts/05-issue-tree.md) (its leaves route onward for you)
 - A workflow you already run in sequence → [01 False-Edge Audit](prompts/01-false-edge-audit.md)
 - A question public data can answer → [02 Diamond Research](prompts/02-diamond-research.md)
