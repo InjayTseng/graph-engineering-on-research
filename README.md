@@ -127,6 +127,18 @@ Same diamond skeleton, but the middle layer outputs judgment, not facts — and 
 
 ## Quick start
 
+Route by what you're holding, not what you want — the shape of your input picks the template deterministically:
+
+- A fuzzy problem, nothing dispatched yet → [05 Issue Tree](prompts/05-issue-tree.md) (its leaves route onward for you)
+- A workflow you already run in sequence → [01 False-Edge Audit](prompts/01-false-edge-audit.md)
+- A question public data can answer → [02 Diamond Research](prompts/02-diamond-research.md)
+- A decision public data can't settle → [04 Consultant Roundtable](prompts/04-consultant-roundtable.md)
+- Conclusions you've already frozen → [03 Adversarial Review](prompts/03-adversarial-review.md)
+
+Chained end to end they cover a whole project: 05 decomposes, 02 researches the fact leaves while 04 convenes on the judgment leaves, and 03 attacks whatever you conclude — with every round's "Rejected" and "Open questions" ledgers fed to the next round's orchestrator.
+
+(For AI agents reading this repo: the routing list above is the index. Load only the file it points to — every template is self-contained, and placeholders are marked with `[...]`.)
+
 1. Pick a template, open the file, copy everything below the "Copy this block" line
 2. Replace the `[...]` placeholders (your topic / your workflow / your conclusion list)
 3. Paste it to your agent
