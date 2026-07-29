@@ -4,15 +4,18 @@ English ｜ [繁體中文](README.zh-TW.md)
 
 Copy-paste prompts that turn your AI agents from a waiting line into a graph that fires in parallel — then flip the graph around and attack your own conclusions.
 
-Three templates, three diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
+Five templates plus a five-minute demo, four diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
 
 | Template | What it does | When to use it |
 |---|---|---|
+| [00 Your First Graph](prompts/00-first-graph.md) | One claim you believe, three isolated skeptics, one vote — the diamond's kill layer alone | Feeling the method in five minutes, before learning it |
 | [01 False-Edge Audit](prompts/01-false-edge-audit.md) | Lays out your existing workflow and finds which "and then"s are fake | You suspect your agents are waiting in a line they don't need |
 | [02 Diamond Research](prompts/02-diamond-research.md) | Split into angles → parallel search → adversarial verification → report with confidence labels | Researching an unknown territory (market, competitors, regulation) |
 | [03 Adversarial Review](prompts/03-adversarial-review.md) | Feeds your finished conclusions to isolated attackers | A document that matters, that you've revised many times, that you believe is complete |
+| [04 Consultant Roundtable](prompts/04-consultant-roundtable.md) | Two-round Delphi: isolated consultants take positions → anonymous aggregate → revise or hold → consensus map with dissent kept | A decision with no right answer in public data (pricing, timing, build vs buy) |
+| [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree; fact leaves route to 02, judgment leaves route to 04 | A big fuzzy problem, before any research is dispatched |
 
-## The three diagrams
+## The four diagrams
 
 ### Diagram 1: The waiting line (where most people are)
 
@@ -93,7 +96,50 @@ graph TD
 
 Same skeleton, opposite direction: the input is not a question but your conclusions, and the middle nodes don't discover — they kill. Field result: a plan hand-revised three times lost roughly one fifth of its conclusions in a single overnight round.
 
+### Diagram 4: The roundtable (judgment, not facts)
+
+```mermaid
+graph TD
+    D[Decision: framed and gated] -->|lens 1, isolated| C1[Consultant]
+    D -->|lens 2| C2[Consultant]
+    D -->|lens 3| C3[Consultant]
+    D -->|...4 to 6 lenses| C4[Consultant]
+
+    C1 -->|position + reasons + change-my-mind evidence| AG[Anonymize & tally: no agent]
+    C2 --> AG
+    C3 --> AG
+    C4 --> AG
+
+    AG -->|anonymous spread, back to the same consultants| R2[Round two: revise or hold]
+    R2 -->|consensus + dissent + deciding facts| S[Convergence report]
+    S -.->|deciding facts become search angles| Q2[Next: a Diamond round]
+
+    style D fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+    style C1 fill:#7c3aed,color:#fff
+    style C2 fill:#7c3aed,color:#fff
+    style C3 fill:#7c3aed,color:#fff
+    style C4 fill:#7c3aed,color:#fff
+    style R2 fill:#7c3aed,color:#fff
+    style AG fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+    style S fill:#1e56c4,color:#fff
+```
+
+Same diamond skeleton, but the middle layer outputs judgment, not facts — and opinions can't be refuted the way claims can, so the fan-in isn't a verification layer. It's a deterministic anonymizer followed by a second pass through the same nodes: consultants see that someone disagrees and why, never who, so revising costs no face. Exactly two rounds — a third manufactures conformity. The dashed edge is the escape hatch back to facts: whatever evidence would settle a disagreement becomes a search angle for a Diamond round.
+
 ## Quick start
+
+Route by what you're holding, not what you want — the shape of your input picks the template deterministically:
+
+- Nothing yet — you just want to feel it, in five minutes → [00 Your First Graph](prompts/00-first-graph.md)
+- A fuzzy problem, nothing dispatched yet → [05 Issue Tree](prompts/05-issue-tree.md) (its leaves route onward for you)
+- A workflow you already run in sequence → [01 False-Edge Audit](prompts/01-false-edge-audit.md)
+- A question public data can answer → [02 Diamond Research](prompts/02-diamond-research.md)
+- A decision public data can't settle → [04 Consultant Roundtable](prompts/04-consultant-roundtable.md)
+- Conclusions you've already frozen → [03 Adversarial Review](prompts/03-adversarial-review.md)
+
+Chained end to end they cover a whole project: 05 decomposes, 02 researches the fact leaves while 04 convenes on the judgment leaves, and 03 attacks whatever you conclude — with every round's "Rejected" and "Open questions" ledgers fed to the next round's orchestrator.
+
+(For AI agents reading this repo: the routing list above is the index. Load only the file it points to — every template is self-contained, and placeholders are marked with `[...]`.)
 
 1. Pick a template, open the file, copy everything below the "Copy this block" line
 2. Replace the `[...]` placeholders (your topic / your workflow / your conclusion list)
@@ -111,19 +157,21 @@ If your harness lets you pick a model per agent, tier by role — this is where 
 |---|---|---|---|
 | Search & fetch nodes | Cheapest fast tier | Repetitive lookup; no judgment needed | Haiku-class / mini-class models |
 | Verifiers / attackers | Strong reasoning, mixed families | Refutation is judgment work; at least one verifier from a different model family breaks shared blind spots | Opus 5, GPT-5.5 Terra — plus one from another family |
+| Consultants (roundtable) | Strong reasoning, panel spans ≥2 families | Positions are pure judgment; a panel from one family is one opinion in several tones | Same tier as verifiers, deliberately mixed |
 | Synthesis / arbitration | The strongest model you have | One context holds everything; an error here survives to the final report | Fable 5, 5.6 Sol, or equivalent |
 
 Field note: running all 313 agents on the top-tier model was expensive tuition — search and fetch never needed it. If you can't pick models per agent (plain chat interfaces), skip this table; the method still works, you just pay more.
 
-## Three honest warnings
+## Four honest warnings
 
 - **The token bill is real.** One diamond round can cost tens of single-conversation budgets. Run search and fetch nodes on cheap models; save the judgment for verification and synthesis
 - **Multiple copies of the same model share the same blind spots** (Knight & Leveson, 1986, on N-version programming). To break model-level blindness, use a different model family as the counter-examiner
 - **The graph buys breadth, not judgment.** A question with zero surviving claims after two rounds has no answer in public data — a hundred more agents won't change that. Go talk to people
+- **A persona is a lens, not a credential.** Putting a CFO hat on a model adds zero facts — it changes which risks get looked at first. A consultant panel's value is that its lenses are mutually exclusive, never that its titles sound senior; don't cite a roundtable verdict as if an expert said it
 
 ## This method is older than LLMs
 
-Every trick here has a name, and every name predates LLMs by decades: isolated skeptics is the Delphi method (RAND, 1950s); designated attack is Devil's Advocacy (management science, 1970s); the open question is the Premortem (Gary Klein, HBR 2007); the rejection ledger is Analysis of Competing Hypotheses (Heuer, CIA). The method is old. What's new is the price: convening eight experts who never meet went from weeks to an hour.
+Every trick here has a name, and every name predates LLMs by decades: isolated skeptics is the Delphi method (RAND, 1950s) — template 04 runs its two-round anonymous-feedback form in full; designated attack is Devil's Advocacy (management science, 1970s); the open question is the Premortem (Gary Klein, HBR 2007); the rejection ledger is Analysis of Competing Hypotheses (Heuer, CIA); the issue tree and MECE are Barbara Minto's Pyramid Principle discipline (McKinsey, 1960s–70s), which template 05 turns into dispatchable graphs. The method is old. What's new is the price: convening eight experts who never meet went from weeks to an hour.
 
 The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article (Traditional Chinese, link in the repo description).
 
