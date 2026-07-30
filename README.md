@@ -193,7 +193,7 @@ Field note: running all 313 agents on the top-tier model was expensive tuition �
 
 Every trick here has a name, and every name predates LLMs by decades: isolated skeptics is the Delphi method (RAND, 1950s) — template 04 runs its two-round anonymous-feedback form in full; designated attack is Devil's Advocacy (management science, 1970s); the open question is the Premortem (Gary Klein, HBR 2007); the rejection ledger is Analysis of Competing Hypotheses (Heuer, CIA); the issue tree and MECE are Barbara Minto's Pyramid Principle discipline (McKinsey, 1960s–70s), which template 05 turns into dispatchable graphs. The method is old. What's new is the price: convening eight experts who never meet went from weeks to an hour.
 
-The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article (Traditional Chinese): [Graph Engineering 的 Agent 左右互搏之術](https://davidyctseng.substack.com/p/agents).
+The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article — in English as [The Art of Making Your Agents Fight Each Other](ARTICLE.md) (also on [LinkedIn](https://www.linkedin.com/pulse/graph-engineering-art-making-your-agents-fight-each-other-david-tseng-mc5lc/)), or the Traditional Chinese original: [Graph Engineering 的 Agent 左右互搏之術](https://davidyctseng.substack.com/p/agents).
 
 ## License & Star
 
