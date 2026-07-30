@@ -13,7 +13,7 @@ Five templates plus a five-minute demo, four diagrams. Every file is self-contai
 | [02 Diamond Research](prompts/02-diamond-research.md) | Split into angles → parallel search → adversarial verification → report with confidence labels | Researching an unknown territory (market, competitors, regulation) |
 | [03 Adversarial Review](prompts/03-adversarial-review.md) | Feeds your finished conclusions to isolated attackers | A document that matters, that you've revised many times, that you believe is complete |
 | [04 Consultant Roundtable](prompts/04-consultant-roundtable.md) | Two-round Delphi: isolated consultants take positions → anonymous aggregate → revise or hold → consensus map with dissent kept | A decision with no right answer in public data (pricing, timing, build vs buy) |
-| [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree; fact leaves route to 02, judgment leaves route to 04 | A big fuzzy problem, before any research is dispatched |
+| [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree — and then actually dispatches it: fact leaves to 02, judgment leaves to 04 | A big fuzzy problem, before any research is dispatched |
 
 ## The four diagrams
 
@@ -162,12 +162,13 @@ If your harness lets you pick a model per agent, tier by role — this is where 
 
 Field note: running all 313 agents on the top-tier model was expensive tuition — search and fetch never needed it. If you can't pick models per agent (plain chat interfaces), skip this table; the method still works, you just pay more.
 
-## Four honest warnings
+## Five honest warnings
 
 - **The token bill is real.** One diamond round can cost tens of single-conversation budgets. Run search and fetch nodes on cheap models; save the judgment for verification and synthesis
 - **Multiple copies of the same model share the same blind spots** (Knight & Leveson, 1986, on N-version programming). To break model-level blindness, use a different model family as the counter-examiner
 - **The graph buys breadth, not judgment.** A question with zero surviving claims after two rounds has no answer in public data — a hundred more agents won't change that. Go talk to people
 - **A persona is a lens, not a credential.** Putting a CFO hat on a model adds zero facts — it changes which risks get looked at first. A consultant panel's value is that its lenses are mutually exclusive, never that its titles sound senior; don't cite a roundtable verdict as if an expert said it
+- **A hole in the brief costs every output, not one.** Before fanning out more than three agents onto the same brief, canary it: dispatch one, with a single instruction — *list every fact you'd need that this brief doesn't give you* — patch, then send the rest. This is what parallelism charges you: a gap gets copied N times and stays invisible until all N are back
 
 ## This method is older than LLMs
 

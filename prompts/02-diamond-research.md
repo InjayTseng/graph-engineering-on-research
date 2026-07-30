@@ -32,6 +32,8 @@ Split the topic into 4–6 complementary, mutually exclusive search angles. A go
 
 ### Step 2: Parallel search (one independent agent per angle)
 
+Canary the brief before you fan out: send it to a single agent with one instruction — *before searching, list every fact or constraint you would need that this brief does not give you* — patch the holes, then dispatch the rest. One extra round trip. Skip it and a gap in the shared brief costs you every output at once, and stays invisible until all of them are back.
+
 Each search agent receives only its own angle. Forward this instruction verbatim:
 
 > You are researching one angle: [the angle]. Find 4–6 sources, primary first (official documents, filings, first-person accounts, raw data); label secondary sources (media, blogs) as secondary. Extract "falsifiable claims" from the sources — each claim has: the claim in one sentence, the supporting quote, the source link, and importance (high / medium / low). Write "unverifiable" when unsure. Never fabricate a source. Output: the claim list, four fields per claim.
