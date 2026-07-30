@@ -4,7 +4,7 @@ English ｜ [繁體中文](README.zh-TW.md)
 
 Copy-paste prompts that turn your AI agents from a waiting line into a graph that fires in parallel — then flip the graph around and attack your own conclusions.
 
-Five templates plus a five-minute demo, five diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
+Five templates plus a five-minute demo, five diagrams. Every file is self-contained: copy the whole block, paste it to your agent, type your topic at the bottom, send.
 
 | Template | What it does | When to use it |
 |---|---|---|
@@ -14,6 +14,8 @@ Five templates plus a five-minute demo, five diagrams. Every file is self-contai
 | [03 Adversarial Review](prompts/03-adversarial-review.md) | Feeds your finished conclusions to isolated attackers | A document that matters, that you've revised many times, that you believe is complete |
 | [04 Consultant Roundtable](prompts/04-consultant-roundtable.md) | Two-round Delphi: isolated consultants take positions → anonymous aggregate → revise or hold → consensus map with dissent kept | A decision with no right answer in public data (pricing, timing, build vs buy) |
 | [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree — and then actually dispatches it: fact leaves to 02, judgment leaves to 04 | A big fuzzy problem, before any research is dispatched |
+
+Want proof before pasting anything? [A real run of 00](examples/00-first-graph-run.md) — the README's own example claim, three isolated skeptics, killed 3–0 in ninety seconds.
 
 ## The diagrams
 
@@ -191,7 +193,7 @@ Field note: running all 313 agents on the top-tier model was expensive tuition �
 
 Every trick here has a name, and every name predates LLMs by decades: isolated skeptics is the Delphi method (RAND, 1950s) — template 04 runs its two-round anonymous-feedback form in full; designated attack is Devil's Advocacy (management science, 1970s); the open question is the Premortem (Gary Klein, HBR 2007); the rejection ledger is Analysis of Competing Hypotheses (Heuer, CIA); the issue tree and MECE are Barbara Minto's Pyramid Principle discipline (McKinsey, 1960s–70s), which template 05 turns into dispatchable graphs. The method is old. What's new is the price: convening eight experts who never meet went from weeks to an hour.
 
-The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article (Traditional Chinese, link in the repo description).
+The full story with field numbers (313 agents, three research rounds, 16–40% rejection rates) is in the companion article (Traditional Chinese): [Graph Engineering 的 Agent 左右互搏之術](https://davidyctseng.substack.com/p/agents).
 
 ## License & Star
 
