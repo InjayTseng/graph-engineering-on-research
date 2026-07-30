@@ -32,6 +32,6 @@ Two or more REFUTED out of three → the claim dies; record one line on what kil
 
 ### What just happened (read this after)
 
-You ran a graph. Three nodes with no edges between them — which is why they could run at the same time, and why skeptic 2 could not anchor on skeptic 1. One deterministic fan-in: the vote, which needed no agent and no judgment. If the claim died, notice that it was steering real decisions an hour ago. If it survived, it now carries a label saying exactly what was checked — which it never had before. That feeling is the product.
+You ran a graph. Three nodes with no edges between them — which is why they could run at the same time, and why skeptic 2 could not anchor on skeptic 1. One deterministic fan-in: the vote, which needed no agent and no judgment. Notice also who never voted: you, the claim's author. That is the design rule the whole method rests on — the node that produced a claim never gets to judge it. If the claim died, notice that it was steering real decisions an hour ago. If it survived, it now carries a label saying exactly what was checked — which it never had before. That feeling is the product.
 
 Scaling up from here: put a search layer in front of the skeptics and a report behind them and you have [02 Diamond Research](02-diamond-research.md); feed them a whole document's conclusions instead of one sentence and you have [03 Adversarial Review](03-adversarial-review.md).

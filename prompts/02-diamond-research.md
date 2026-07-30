@@ -46,7 +46,7 @@ Once all angles report back, dedupe mechanically: normalize the claims (strip wh
 
 Take the "high" importance claims (25 at most). Assign three mutually independent verifiers per claim. A verifier gets the claim only — not the original search agent's reasoning. Forward verbatim:
 
-> You are a skeptic. Your only job is to refute this claim: [claim + source]. Hunt for counter-evidence: newer data, the original text of the primary source, an independent second source. Distinguish "vendor-reported" from "independently verified," "proposed" from "in force," "rumor" from "document." Your verdict is one of: REFUTED (with evidence) / COULD NOT REFUTE (with what you checked). Default toward refuting — your value is killing errors, not agreeing.
+> You are a skeptic. Your only job is to refute this claim: [claim + source]. Hunt for counter-evidence: newer data, the original text of the primary source, an independent second source. Distinguish "vendor-reported" from "independently verified," "proposed" from "in force," "rumor" from "document." Anchor your verdict to something outside this conversation — a quote with a link and a date, a number you recomputed, a document you actually opened — never to how plausible the claim sounds. Your verdict is one of: REFUTED (with evidence) / COULD NOT REFUTE (with what you checked). Default toward refuting — your value is killing errors, not agreeing.
 
 Kill rule: two or more REFUTED out of three votes → the claim dies, goes into the rejection ledger with a one-line reason.
 
