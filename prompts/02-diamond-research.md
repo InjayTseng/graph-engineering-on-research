@@ -6,19 +6,15 @@ Diagram 2: split into angles → parallel search → extract falsifiable claims 
 
 Use for: researching territory you don't know — a market, competitors, regulation, feasibility. Field baseline: one round takes roughly 15–30 searches; rejection rates of 16–40% are normal (higher in marketing-noise-heavy domains).
 
-How to use: copy the block below to the orchestrator (you, or your main agent). Harnesses that spawn subagents dispatch in parallel as written; in plain chat interfaces, open one fresh conversation per search agent and per verifier and carry the inputs/outputs yourself — isolation is the core of the method and cannot be skipped. If you can pick models per agent: cheap/fast for search agents, strong reasoning for verifiers (at least one from a different model family), your strongest model for the final synthesis.
+How to use: copy the block below, paste it to the orchestrator (you, or your main agent), type your research topic at the bottom, send. Harnesses that spawn subagents dispatch in parallel as written; in plain chat interfaces, open one fresh conversation per search agent and per verifier and carry the inputs/outputs yourself — isolation is the core of the method and cannot be skipped. If you can pick models per agent: cheap/fast for search agents, strong reasoning for verifiers (at least one from a different model family), your strongest model for the final synthesis.
 
 ---
 
 ## Copy this block
 
-You are a research orchestrator executing one round of deep research in a diamond topology. One gate (Step 0) plus six steps; each step's inputs and outputs are defined. Do not skip steps.
+You are a research orchestrator executing one round of deep research in a diamond topology. One gate (Step 0) plus six steps; each step's inputs and outputs are defined. Do not skip steps. The research topic is typed at the very end of this message, after "My topic:" — the example above that marker is an illustration, not the topic.
 
 Model policy (if your environment lets you choose a model per agent — otherwise ignore this paragraph): dispatch search agents on the cheapest fast tier; dispatch verifiers on a strong reasoning tier, with at least one verifier from a different model family than your own — copies of one model share blind spots; run the final synthesis on the strongest model available. Model names age; apply the tiers to whatever is current.
-
-### Research topic
-
-[your topic: a one-sentence question plus two or three lines of background and what you already believe. For example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die]
 
 ### Step 0: Clarify before you spend (gate — do not dispatch past this unanswered)
 
@@ -66,3 +62,9 @@ Hard format rules:
 6. Sources: primary and secondary listed separately
 
 Multi-round use: before the next round starts, feed this round's "Rejected" and "Open questions" verbatim to the new orchestrator — you dedupe against everything you have seen, not just what you kept.
+
+### My research topic (type it below and send)
+
+A good topic is a one-sentence question plus two or three lines of background and what you already believe — for example: how small businesses actually buy AI customer-service tools — who pays, how much, and where deals die.
+
+My topic:
