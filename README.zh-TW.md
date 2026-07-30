@@ -193,7 +193,7 @@ graph TD
 
 每一招都比 LLM 老得多：隔離的懷疑者是 Delphi method（RAND，1950s）——範本 04 把它的兩輪匿名回饋完整跑滿；指定攻擊是魔鬼代言人（Devil's Advocacy，1970s 管理決策學）；開放題是事前驗屍（Premortem，Gary Klein 2007）；否決帳本是競爭假設分析（ACH，CIA 情報分析）；議題樹與 MECE 是 Barbara Minto 的金字塔原理那套紀律（McKinsey，1960s–70s），範本 05 把它翻譯成可派發的圖。方法是舊的，便宜是新的。
 
-完整故事與實測數據（313 個 agent、三輪研究、否決率 16–40%）見文章：[〈Graph Engineering 的 Agent 左右互搏之術〉](https://davidyctseng.substack.com/p/agents)。
+完整故事與實測數據（313 個 agent、三輪研究、否決率 16–40%）見文章：[〈Graph Engineering 的 Agent 左右互搏之術〉](https://davidyctseng.substack.com/p/agents)。英文版收錄於本 repo 的 [ARTICLE.md](ARTICLE.md)，同步發佈於 [LinkedIn](https://www.linkedin.com/pulse/graph-engineering-art-making-your-agents-fight-each-other-david-tseng-mc5lc/)。
 
 ## License & Star
 
