@@ -4,7 +4,7 @@ English ｜ [繁體中文](README.zh-TW.md)
 
 Copy-paste prompts that turn your AI agents from a waiting line into a graph that fires in parallel — then flip the graph around and attack your own conclusions.
 
-Five templates plus a five-minute demo, four diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
+Five templates plus a five-minute demo, five diagrams. Every file is self-contained: copy the whole block, paste it to your agent, replace the placeholders, run.
 
 | Template | What it does | When to use it |
 |---|---|---|
@@ -15,7 +15,20 @@ Five templates plus a five-minute demo, four diagrams. Every file is self-contai
 | [04 Consultant Roundtable](prompts/04-consultant-roundtable.md) | Two-round Delphi: isolated consultants take positions → anonymous aggregate → revise or hold → consensus map with dissent kept | A decision with no right answer in public data (pricing, timing, build vs buy) |
 | [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree — and then actually dispatches it: fact leaves to 02, judgment leaves to 04 | A big fuzzy problem, before any research is dispatched |
 
-## The four diagrams
+## The diagrams
+
+### Diagram 0: You already run a graph
+
+```mermaid
+graph LR
+    A[Agent] -->|repeat| A
+    A -.-> S[state]
+
+    style A fill:#1e56c4,color:#fff
+    style S fill:#e5e7eb,stroke:#9ca3af,color:#1f2937
+```
+
+A single agent loop is already a graph: one node, one edge pointing back at itself, state riding around the cycle. That reframe kills a false choice — graphs don't replace loops, they connect and govern them. Every node in the diagrams below is a loop that kept its job and lost its monopoly. If you have a working loop today, you are not starting over; you are adding edges.
 
 ### Diagram 1: The waiting line (where most people are)
 
@@ -68,6 +81,8 @@ graph TD
 ```
 
 No edges between the search nodes, so they run simultaneously. The gray node is deterministic code, not an agent — merging and deduping is a one-liner. The green verification layer gets fresh context and has exactly one job: refute.
+
+Two design rules hide in that green layer, and they are the difference between review and theater. First: the node that produced a claim never judges it — three siblings sharing one model and one context agreeing with each other is not verification, it is the same blind spot counted three times. Second: a verdict must anchor to something outside the graph — a primary-source quote with a link and a date, a test that actually ran, a number recomputed by hand — because internal agreement is the one thing a graph can always manufacture on demand.
 
 ### Diagram 3: Flip it around (attack your own conclusions)
 
@@ -165,7 +180,7 @@ Field note: running all 313 agents on the top-tier model was expensive tuition �
 ## Five honest warnings
 
 - **The token bill is real.** One diamond round can cost tens of single-conversation budgets. Run search and fetch nodes on cheap models; save the judgment for verification and synthesis
-- **Multiple copies of the same model share the same blind spots** (Knight & Leveson, 1986, on N-version programming). To break model-level blindness, use a different model family as the counter-examiner
+- **Multiple copies of the same model share the same blind spots** (Knight & Leveson, 1986, on N-version programming) — and so does a panel sharing one context: approval from three agents reading the same brief is one opinion with three signatures. Break both: a different model family as counter-examiner, fresh context for every reviewer, and verdicts anchored to evidence outside the graph, never to each other
 - **The graph buys breadth, not judgment.** A question with zero surviving claims after two rounds has no answer in public data — a hundred more agents won't change that. Go talk to people
 - **A persona is a lens, not a credential.** Putting a CFO hat on a model adds zero facts — it changes which risks get looked at first. A consultant panel's value is that its lenses are mutually exclusive, never that its titles sound senior; don't cite a roundtable verdict as if an expert said it
 - **A hole in the brief costs every output, not one.** Before fanning out more than three agents onto the same brief, canary it: dispatch one, with a single instruction — *list every fact you'd need that this brief doesn't give you* — patch, then send the rest. This is what parallelism charges you: a gap gets copied N times and stays invisible until all N are back
