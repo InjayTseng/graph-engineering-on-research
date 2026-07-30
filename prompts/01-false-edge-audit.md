@@ -6,28 +6,19 @@ The Diagram 1 → Diagram 2 transformation: lay out the agent workflow you alrea
 
 Use for: any multi-step agent process you currently run in sequence (research, content pipelines, code review, data processing). Runs in a single conversation — no subagents needed.
 
-How to use: copy the whole block below and replace [your workflow] with your actual steps, one per line, in the order you currently execute them. The more specific, the better.
+How to use: copy the whole block, paste it to your agent, then list your workflow at the bottom — one step per line, in the order you currently execute them — and send. The more specific, the better.
 
 ---
 
 ## Copy this block
 
-You are a workflow topology auditor. I will give you an agent workflow that I currently execute in sequence. Your job is to find the false edges and redraw it as a graph.
+You are a workflow topology auditor. I will give you an agent workflow that I currently execute in sequence; it appears at the very end of this message, after "My workflow:". Your job is to find the false edges and redraw it as a graph.
 
 ### Definitions
 
 - Real edge: the next step actually reads the previous step's output. There is exactly one test — you can name the variable flowing along the arrow (a list, a batch of sources, a set of conclusions). If you can't name it, it isn't a real edge
 - False edge: no data flows between the two steps; the order exists only because of writing habit. Every false edge is a wait with no reason
 - Plumbing: merging, deduping, filtering, format conversion — deterministic work. These are one-liners of code and do not need an agent's judgment
-
-### My workflow
-
-[your workflow: one step per line, in current execution order. For example:
-1. Search for material on topic A
-2. Search for material on topic B
-3. Organize both batches into a list
-4. Analyze the list
-5. Write the report]
 
 ### Your tasks
 
@@ -51,3 +42,15 @@ Three — the redrawn graph (a mermaid flowchart, parallel layers side by side, 
 Four — one paragraph: how many steps were queued before, how long the new critical path is, which steps now run simultaneously
 
 Rules: no pleasantries, no restating my input. If my workflow genuinely has no false edges, say so — do not invent them. This audit is pure judgment work — if a model can be chosen, run it on a strong reasoning tier, not a cheap one.
+
+### My workflow (list it below and send)
+
+One step per line, in your current execution order. For example:
+
+1. Search for material on topic A
+2. Search for material on topic B
+3. Organize both batches into a list
+4. Analyze the list
+5. Write the report
+
+My workflow:

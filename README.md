@@ -154,11 +154,13 @@ Route by what you're holding, not what you want — the shape of your input pick
 
 Chained end to end they cover a whole project: 05 decomposes, 02 researches the fact leaves while 04 convenes on the judgment leaves, and 03 attacks whatever you conclude — with every round's "Rejected" and "Open questions" ledgers fed to the next round's orchestrator.
 
-(For AI agents reading this repo: the routing list above is the index. Load only the file it points to — every template is self-contained, and placeholders are marked with `[...]`.)
+(For AI agents reading this repo: the routing list above is the index. Load only the file it points to — every template is self-contained, and the user's input arrives at the very end of the pasted block, after a labeled marker like "My topic:".)
 
 1. Pick a template, open the file, copy everything below the "Copy this block" line
-2. Replace the `[...]` placeholders (your topic / your workflow / your conclusion list)
-3. Paste it to your agent
+2. Paste it to your agent
+3. Type your topic / workflow / claim at the bottom and send — every block ends with a labeled slot, examples included, so there is nothing to hunt for and replace
+
+(03 is the exception: it dispatches in parts — follow its own how-to.)
 
 **Harnesses that can spawn subagents** (Claude Code and similar): dispatch in parallel exactly as written — this is where the method shines.
 

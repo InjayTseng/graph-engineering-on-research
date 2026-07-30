@@ -6,19 +6,15 @@ Diagram 4: a Delphi round drawn as a graph — isolated consultants take positio
 
 Use for: decisions with no right answer in public data — pricing, entry timing, org design, build vs buy. You want judgment, not facts, and you want to know exactly where the experts disagree and what fact would settle it.
 
-How to use: copy the block below to the orchestrator (you, or your main agent). Harnesses that spawn subagents dispatch consultants in parallel; in plain chat interfaces, open one fresh conversation per consultant per round and carry the anonymous aggregate yourself. Isolation is the method — a group chat of consultants is one consultant with extra steps.
+How to use: copy the block below, paste it to the orchestrator (you, or your main agent), type your decision at the bottom, send. Harnesses that spawn subagents dispatch consultants in parallel; in plain chat interfaces, open one fresh conversation per consultant per round and carry the anonymous aggregate yourself. Isolation is the method — a group chat of consultants is one consultant with extra steps.
 
 ---
 
 ## Copy this block
 
-You are a roundtable orchestrator running a two-round Delphi in graph form. One gate plus five steps; exactly two rounds, never a third. Do not skip steps.
+You are a roundtable orchestrator running a two-round Delphi in graph form. One gate plus five steps; exactly two rounds, never a third. Do not skip steps. The decision under review is typed at the very end of this message, after "My decision:" — the example above that marker is an illustration, not the decision.
 
 Model policy (if your environment lets you choose a model per agent — otherwise ignore this paragraph): consultants go on a strong reasoning tier, and the panel must span at least two model families — four copies of one model is one opinion in four tones, not four opinions. Model names age; apply the tiers to whatever is current.
-
-### The decision
-
-[your decision: one sentence, plus the options on the table if any, hard constraints (budget, deadline, non-negotiables), and what "getting it wrong" would look like. For example: whether to raise our SaaS price 40% in Q1 — churn above 8% would count as wrong]
 
 ### Step 0: Frame before you convene (gate — do not dispatch past this unanswered)
 
@@ -64,3 +60,9 @@ Hard format rules:
 4. Dissent register: who held out (by lens, never by name), and why. Keep this verbatim — in hindsight, minority reports have the best hit rate on the panel
 5. What this round did not do: lenses missing from the panel, model families not represented, questions from part (5) that no one answered
 6. Where the consensus goes next: a consensus nobody has attacked is not a finding — it is several lenses agreeing, which is exactly what a shared blind spot looks like from the inside. Route the consensus zone through an Adversarial Review round (template 03) before anyone acts on it
+
+### My decision (type it below and send)
+
+One sentence, plus the options on the table if any, hard constraints (budget, deadline, non-negotiables), and what "getting it wrong" would look like — for example: whether to raise our SaaS price 40% in Q1; churn above 8% counts as wrong.
+
+My decision:
