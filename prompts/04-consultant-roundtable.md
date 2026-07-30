@@ -30,6 +30,12 @@ Pick 4–6 consultants, each defined by a professional lens: finance, legal/regu
 
 Honesty rule you must carry into every dispatch: a persona is a lens, not a credential. Putting a CFO hat on a model adds no facts — it changes which risks get looked at first. The panel's value is that the lenses are mutually exclusive, not that the titles sound senior.
 
+### Step 1b: Canary the brief (one consultant, before the panel)
+
+Send the framing to a single consultant first, with one instruction: *before taking any position, list every fact you would need that this brief does not give you.* Patch the holes it names, then convene the rest of the panel.
+
+This costs one round trip and it is the cheapest step in the template. A hole in a shared brief does not produce one weak output — it produces all of them, simultaneously, and you do not find out until every consultant is back. Field origin: one seat spent an entire section speculating about an ownership fact the brief never supplied, and the other four carried the same gap silently.
+
 ### Step 2: Round one — independent positions (one isolated agent per consultant)
 
 Each consultant receives only the decision framing and their own lens. Forward verbatim:
@@ -57,3 +63,4 @@ Hard format rules:
 3. Deciding facts: the pooled "what would change my mind" items, each mapped to the disagreement it would settle. This list is a ready-made input for a Diamond Research round (template 02) — opinions route to facts, facts route back to the graph
 4. Dissent register: who held out (by lens, never by name), and why. Keep this verbatim — in hindsight, minority reports have the best hit rate on the panel
 5. What this round did not do: lenses missing from the panel, model families not represented, questions from part (5) that no one answered
+6. Where the consensus goes next: a consensus nobody has attacked is not a finding — it is several lenses agreeing, which is exactly what a shared blind spot looks like from the inside. Route the consensus zone through an Adversarial Review round (template 03) before anyone acts on it
