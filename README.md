@@ -6,6 +6,8 @@ Copy-paste prompts that turn your AI agents from a waiting line into a graph tha
 
 Five templates plus a five-minute demo, five diagrams. Every file is self-contained: copy the whole block, paste it to your agent, type your topic at the bottom, send.
 
+**Or skip the copy-paste entirely:** [install as a Claude Code plugin](#install-as-a-claude-code-plugin) and every template becomes a slash command — `/diamond-research your topic`.
+
 | Template | What it does | When to use it |
 |---|---|---|
 | [00 Your First Graph](prompts/00-first-graph.md) | One claim you believe, three isolated skeptics, one vote — the diamond's kill layer alone | Feeling the method in five minutes, before learning it |
@@ -16,6 +18,27 @@ Five templates plus a five-minute demo, five diagrams. Every file is self-contai
 | [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree — and then actually dispatches it: fact leaves to 02, judgment leaves to 04 | A big fuzzy problem, before any research is dispatched |
 
 Want proof before pasting anything? [A real run of 00](examples/00-first-graph-run.md) — the README's own example claim, three isolated skeptics, killed 3–0 in ninety seconds.
+
+## Install as a Claude Code plugin
+
+In [Claude Code](https://claude.com/claude-code), two commands replace all the copy-pasting:
+
+```
+/plugin marketplace add InjayTseng/graph-engineering-on-research
+/plugin install graph-engineering@graph-engineering-on-research
+```
+
+Each template becomes a slash command — type your input right after it, in English or 繁體中文 (it answers in the language you use), and Claude Code spawns real isolated subagents for every node, which is exactly the execution model these templates were written for:
+
+```
+/first-graph our main competitor is cheaper than us
+/diamond-research how big is the pet-insurance market in southeast asia
+/issue-tree 新產品該先做 B2B 還是 B2C
+```
+
+`/first-graph` → 00 · `/false-edge-audit` → 01 · `/diamond-research` → 02 · `/adversarial-review` → 03 (give it a file path) · `/consultant-roundtable` → 04 · `/issue-tree` → 05
+
+If another plugin claims one of these names, use the qualified form: `/graph-engineering:diamond-research`. Not using Claude Code? Everything below works by plain copy-paste — nothing to install.
 
 ## The diagrams
 

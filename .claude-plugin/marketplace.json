@@ -1,0 +1,20 @@
+{
+  "name": "graph-engineering-on-research",
+  "description": "Graph engineering for AI agents: research as a graph instead of a waiting line — copy-paste templates and slash commands. EN + 繁中.",
+  "owner": {
+    "name": "David Tseng",
+    "url": "https://github.com/InjayTseng"
+  },
+  "plugins": [
+    {
+      "name": "graph-engineering",
+      "source": "./",
+      "description": "Six slash commands that run research as a graph: parallel search angles, isolated skeptics, adversarial review, two-round consultant roundtables, and an issue tree that dispatches itself. EN + 繁中.",
+      "version": "1.0.0",
+      "author": {
+        "name": "David Tseng",
+        "url": "https://github.com/InjayTseng"
+      }
+    }
+  ]
+}
