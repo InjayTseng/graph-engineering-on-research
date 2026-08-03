@@ -105,7 +105,7 @@ Find what you don't know, plus what you can actually trust.
 
 The most valuable part of the field test wasn't the parallelism. It was verification through mass argument. My three rounds had claim rejection rates of 16%, 40%, and 28%. Without adversarial verification, here's what I would have been quoting:
 
-- A lab spends $1B a year buying RL environments — media hearsay. Killed.
+- A lab spends $1B a year buying RL environments — killed as media hearsay. **That kill was right for the wrong reason, and I only found out by running template 03 on this article.** The report exists: The Information, September 2025, relayed by TechCrunch with a link. What is actually wrong is the quantity — leaders had *discussed* spending *more than* $1B *over the next year*: a forward-looking floor, not an annual run-rate for buying. A verifier that can't tell "unsourced" from "sourced to a paywalled outlet I didn't open" will kill true claims too, and this is what that looks like.
 - A startup grew revenue 15x in a year — self-reported, no independent source. Killed.
 - The EU AI Act's high-risk obligations take effect August 2026 — amended, pushed to December 2027. Killed.
 
@@ -163,8 +163,8 @@ This is my favorite part. After writing the section above, I went back to check 
 
 - Isolated skeptics — the Delphi method (RAND, 1950s): experts answer independently and never meet. The reason got confirmed by experiment later: social influence wrecks the accuracy of group judgment
 - Designated attack — Devil's Advocacy, 1970s management science. The finding: structured attack exposes hidden assumptions better than expert consensus does
-- The open question — the Premortem (Gary Klein, 2007): "assume the plan has already failed — why?" Empirically digs up about 30% more risks than a straight review
-- The rejection ledger — Analysis of Competing Hypotheses (CIA): killed hypotheses keep their corpses so they can't resurrect. There's even an official standard for labeling confidence
+- The open question — the Premortem (Gary Klein, 2007): "assume the plan has already failed — why?" The lab result behind it is thinner than it usually gets quoted as being: the 1989 study Klein cites measured how many *reasons* people generated, not how many risks they caught, and never checked whether the reasons were right
+- The rejection ledger — Analysis of Competing Hypotheses (CIA): items considered and set aside stay on a written list, and a hypothesis is retired by being disproved rather than by being unproven. The official standard for labeling confidence is a different document — ODNI's ICD 203, Analytic Standards (2015) — which sets likelihood bands and forbids putting a confidence level and a likelihood in the same sentence
 
 The LLM world has parallel findings. AI Safety via Debate (2018) argued that models attacking each other gets closer to truth than models grading themselves. Anthropic published the engineering story of their own multi-agent research system in 2025 — same conclusion: multi-agent wins clearly on breadth, at ten-something times the token cost.
 
@@ -204,6 +204,8 @@ The templates are one directory over: start with [00 Your First Graph](prompts/0
 - Gary Klein, Performing a Project Premortem (Harvard Business Review, 2007)
 - Knight & Leveson, An Experimental Evaluation of the Assumption of Independence in Multiversion Programming (1986)
 - Richards Heuer, Psychology of Intelligence Analysis (CIA, 1999)
+- ODNI, Intelligence Community Directive 203: Analytic Standards (signed 2 January 2015)
+- Mitchell, Russo & Pennington, Back to the future: Temporal perspective in the explanation of events (Journal of Behavioral Decision Making, 1989) — the study behind Klein's premortem figure
 - Irving, Christiano & Amodei, AI Safety via Debate (2018)
 - Chen et al., Are More LLM Calls All You Need? Towards Scaling Laws of Compound Inference Systems (2024)
 - Anthropic, How we built our multi-agent research system (2025)
