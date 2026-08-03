@@ -17,7 +17,11 @@ Five templates plus a five-minute demo, five diagrams. Every file is self-contai
 | [04 Consultant Roundtable](prompts/04-consultant-roundtable.md) | Two-round Delphi: isolated consultants take positions → anonymous aggregate → revise or hold → consensus map with dissent kept | A decision with no right answer in public data (pricing, timing, build vs buy) |
 | [05 Issue Tree](prompts/05-issue-tree.md) | MECE decomposition into a dispatchable tree — and then actually dispatches it: fact leaves to 02, judgment leaves to 04 | A big fuzzy problem, before any research is dispatched |
 
-Want proof before pasting anything? [A real run of 00](examples/00-first-graph-run.md) — the README's own example claim, three isolated skeptics, killed 3–0 in ninety seconds.
+Want proof before pasting anything? Every run below is a verbatim transcript, published with what went wrong left in:
+
+- [00, a real run](examples/00-first-graph-run.md) — the README's own example claim, three isolated skeptics, killed 3–0 in ninety seconds
+- [02, a real run](examples/02-diamond-research-run.md) — 31 agents pointed at this repo's own premise, "do multi-agent systems actually beat a single strong model?" Both claims that died were claims *against* multi-agent, killed because verifiers opened the papers and found the abstracts overstated. The honest answer is that nobody has shown an architecture-level effect in either direction
+- [04, a real run](examples/04-consultant-roundtable-run.md) — five lenses on a pricing decision, two rounds. Four consultants revised, one held; the panel converged on firm-level tiers, but the price ladder everyone adopted came from one seat and spread by anchoring, not corroboration — recorded as such rather than reported as consensus
 
 ## Install as a Claude Code plugin
 
