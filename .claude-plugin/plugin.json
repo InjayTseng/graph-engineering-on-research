@@ -1,0 +1,21 @@
+{
+  "name": "graph-engineering",
+  "description": "Turn your AI agents from a waiting line into a graph: six slash commands for parallel research, adversarial verification, and consultant roundtables. EN + 繁中.",
+  "version": "1.0.0",
+  "author": {
+    "name": "David Tseng",
+    "url": "https://github.com/InjayTseng"
+  },
+  "homepage": "https://github.com/InjayTseng/graph-engineering-on-research",
+  "repository": "https://github.com/InjayTseng/graph-engineering-on-research",
+  "license": "MIT",
+  "keywords": [
+    "multi-agent",
+    "deep-research",
+    "adversarial-review",
+    "delphi",
+    "issue-tree",
+    "prompt-templates",
+    "orchestration"
+  ]
+}

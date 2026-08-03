@@ -6,6 +6,8 @@
 
 五個範本加一個五分鐘體驗，對應五張圖。每個檔案都是自包含的——整塊複製、貼給你的 agent、在最下面打上你的主題、送出。
 
+**或者完全跳過複製貼上：**[安裝成 Claude Code plugin](#安裝成-claude-code-plugin)，每個範本變成一個斜線指令——`/diamond-research 你的主題`。
+
 | 範本 | 做什麼 | 什麼時候用 |
 |---|---|---|
 | [00 你的第一張圖](prompts/00-first-graph.zh-TW.md) | 一句你相信的話、三個隔離的懷疑者、一次投票——鑽石的處決層單獨拆出來 | 在學會方法之前，先花五分鐘感受它 |
@@ -16,6 +18,27 @@
 | [05 議題樹拆解](prompts/05-issue-tree.zh-TW.md) | MECE 拆成可派發的樹，並且真的派出去：事實葉子流向 02，判斷葉子流向 04 | 一個又大又模糊、還沒派出任何研究的問題 |
 
 想先看它真的跑起來的樣子？[00 的實跑紀錄](examples/00-first-graph-run.md)（英文逐字稿）——拿 README 自己舉的例子當主張，三位隔離的懷疑者，九十秒內 3–0 處決。
+
+## 安裝成 Claude Code plugin
+
+在 [Claude Code](https://claude.com/claude-code) 裡，兩行指令取代所有複製貼上：
+
+```
+/plugin marketplace add InjayTseng/graph-engineering-on-research
+/plugin install graph-engineering@graph-engineering-on-research
+```
+
+每個範本變成一個斜線指令——指令後面直接打你的輸入，中英文都通（用什麼語言問，就用什麼語言答）。Claude Code 會為每個節點開出真正隔離的 subagent，這正是這些範本原本想要的執行方式：
+
+```
+/first-graph 我們最大的競品比我們便宜
+/diamond-research 東南亞寵物保險市場有多大
+/issue-tree 新產品該先做 B2B 還是 B2C
+```
+
+`/first-graph` → 00 · `/false-edge-audit` → 01 · `/diamond-research` → 02 · `/adversarial-review` → 03（給它檔案路徑）· `/consultant-roundtable` → 04 · `/issue-tree` → 05
+
+如果指令名稱和其他 plugin 撞名，改用完整形式：`/graph-engineering:diamond-research`。不用 Claude Code？下面的一切照樣複製貼上就能用——什麼都不用裝。
 
 ## 這些圖
 
