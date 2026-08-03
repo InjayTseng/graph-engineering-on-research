@@ -21,6 +21,7 @@ Want proof before pasting anything? Every run below is a verbatim transcript, pu
 
 - [00, a real run](examples/00-first-graph-run.md) — the README's own example claim, three isolated skeptics, killed 3–0 in ninety seconds
 - [02, a real run](examples/02-diamond-research-run.md) — 31 agents pointed at this repo's own premise, "do multi-agent systems actually beat a single strong model?" Both claims that died were claims *against* multi-agent, killed because verifiers opened the papers and found the abstracts overstated. The honest answer is that nobody has shown an architecture-level effect in either direction
+- [03, a real run](examples/03-adversarial-review-run.md) — the document under attack is [this repo's own article](ARTICLE.md). Twenty-six frozen conclusions, five isolated attackers, and **nothing survived unqualified**: six overturned, including the article's own showcase example of verification working, which turned out to be a false kill. The verified corrections are already applied to the article; the transcript is what found them
 - [04, a real run](examples/04-consultant-roundtable-run.md) — five lenses on a pricing decision, two rounds. Four consultants revised, one held; the panel converged on firm-level tiers, but the price ladder everyone adopted came from one seat and spread by anchoring, not corroboration — recorded as such rather than reported as consensus
 
 ## Install as a Claude Code plugin
